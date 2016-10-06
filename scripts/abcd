@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+from digger import parser
+from digger import actions
+
+
+parser.bootstrap()
+
+
+if __name__ == '__main__':
+  parser.run()

@@ -1,0 +1,10 @@
+addict==1.0.0
+six==1.10.0
+addict==1.0.0
+py==1.4.31
+pytest==3.0.3
+pytest-sugar==0.7.1
+requests==2.11.1
+termcolor==1.1.0
+Sphinx==1.4.5
+sphinx-rtd-theme==0.1.9
