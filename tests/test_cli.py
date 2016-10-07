@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 
 import pytest
@@ -7,9 +8,9 @@ from digger import builds
 
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
-tmp_dir = '%s/../tmp' % current_dir
-app_dir = '%s/blank-android-gradle-master' % tmp_dir
-keystore = '%s../odra.keystore' % current_dir
+tmp_dir = '%s/tmp' % current_dir
+app_dir = '%s/welcome-android-gradle-master' % tmp_dir
+keystore = '%s/odra.keystore' % current_dir
 
 
 @pytest.fixture
@@ -50,7 +51,6 @@ def test_sign(capsys, cli):
   out, err = capsys.readouterr()
   apk = [f.replace('\n', '') for f in out.split(',') if f.replace('\n', '').endswith('app-debug-unaligned.apk')]
   apk = apk[0]
-  cmd = 'sign --path %s --binary %s --name blank-gradle' % (app_dir, apk)
+  cmd = 'sign --path %s --binary %s --name welcome-gradle' % (app_dir, apk)
   parser.run(cmd.split())
-  out, err = capsys.readouterr()
-  assert os.path.exists('%s/app/build/outputs/apk/blank-gradle.apk' % app_dir)
+  assert os.path.exists(apk)
