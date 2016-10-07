@@ -7,8 +7,8 @@ from digger import builds
 
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
-tmp_dir = '%s/../tmp' % current_dir
-zip_dir = '%s/../fixtures' % current_dir
+tmp_dir = '%s/tmp' % current_dir
+zip_dir = '%s/fixtures' % current_dir
 
 
 @pytest.fixture
