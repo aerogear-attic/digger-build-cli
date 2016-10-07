@@ -8,7 +8,8 @@ import requests
 @pytest.fixture
 def template_names():
   names = [
-    'welcome-android-gradle'
+    'welcome-android-gradle',
+    'blank-cordova-app'
   ]
   return names
 

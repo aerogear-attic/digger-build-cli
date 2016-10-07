@@ -26,7 +26,10 @@ class Argument(object):
 
 
 class MetaAction(type):
-   def __new__(cls, name, bases, namespace, **kwds):
+  """
+  A metaclass that registers digger actions whenever the class is instantiated.
+  """
+  def __new__(cls, name, bases, namespace, **kwds):
     result = type.__new__(cls, name, bases, dict(namespace))
     digger.register_action(result)
     return result
@@ -40,7 +43,7 @@ class BaseAction(with_metaclass(MetaAction, object)):
   optional arguments for the subparser in context.
 
   The subclass should define a ``_cmd_`` and ``_help_`` properties together with a instance handler method
-  to receive the cli paramaters.
+  to receive the cli parameters.
 
   ``_cmd_`` becomes the subparser command and ``_help_`` is the help/info text about the command itself.
 
@@ -78,7 +81,7 @@ class BaseAction(with_metaclass(MetaAction, object)):
   @classmethod
   def props(cls):
     """
-    Class method that returns all defined arguments whithin the class.
+    Class method that returns all defined arguments within the class.
     
     Returns:
       A dictionary containing all action defined arguments (if any).

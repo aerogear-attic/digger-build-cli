@@ -18,7 +18,7 @@ After cloning the repository run:
 conda env create -f env.yaml python=3.5.1
 ```
 
-To activate the environemnt run (might need a new terminal window or reload bashrc/bash_profile):
+To activate the environment run (might need a new terminal window or reload bashrc/bash_profile):
 
 ```
 source activate digger
@@ -28,7 +28,7 @@ source activate digger
 Some requirements are needed to run it outside of a container:
 
 
-### Instalation
+### Installation
 
 ```sh
 python setup.py install
@@ -44,9 +44,20 @@ Installing development dependencies:
 pip install -r requirements.txt
 ```
 
-Tests will download all templates from their github repository (master branch) and will try to build it
+Tests will download all templates from their Github repository (master branch) and will try to build it.
 
-Note: If running outsite of the container,
+### If running outside of the container
+
+#### Prepare
+
+```sh
+# create a folder for Gradle cache
+mkdir /gradle-cache
+# make sure you have write permissions
+chown -R ${USER} /gradle-cache
+```
+
+Also, make sure you have Android SDK on your machine and `$ANDROID_HOME` is set.
 
 #### setup.py
 
@@ -54,7 +65,7 @@ Note: If running outsite of the container,
 python setup.py test
 ```
 
-####  using py.test direcly (from digger project root folder)
+####  using py.test directly (from digger project root folder)
 
 ```sh
 py.test -s
