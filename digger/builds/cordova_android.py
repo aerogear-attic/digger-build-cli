@@ -5,9 +5,9 @@ from digger.base.build import BaseBuild
 from digger.helpers import android as android_helper
 
 
-class CordovaBuildAndroid(BaseBuild):
+class CordovaAndroidBuild(BaseBuild):
   def __init__(self, **kwargs):
-    super(CordovaBuildAndroid, self).__init__(**kwargs)
+    super(CordovaAndroidBuild, self).__init__(**kwargs)
 
   def sign(self, storepass=None, keypass=None, keystore=None, apk=None, alias=None, name='app'):
     if keystore is None:
@@ -38,7 +38,7 @@ class CordovaBuildAndroid(BaseBuild):
     # cordova build android --debug
     # OR
     # cordova build android --release
-    self.run_cmd(['cordova', 'build', "android", "--" + mode], 'build')
+    self.run_cmd(['cordova', 'build', "android", "--%s" % mode], 'build')
 
 
   def test(self):

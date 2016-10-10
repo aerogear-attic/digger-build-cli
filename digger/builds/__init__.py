@@ -1,7 +1,7 @@
 import os
 
 from .ant import AntBuild
-from .cordova_android import CordovaBuildAndroid
+from .cordova_android import CordovaAndroidBuild
 from .gradle import GradleBuild
 
 
@@ -21,7 +21,7 @@ def from_path(path):
     # then we can be sure that it is a Cordova project.
     # we also need to check if we want to build an IOS app or Android app for the Cordova.
     # for now, we don't do that and support Android only.
-    return CordovaBuildAndroid.from_path(path)
+    return CordovaAndroidBuild.from_path(path)
 
   else:
     return AntBuild.from_path(path)
