@@ -4,6 +4,7 @@ import pytest
 
 from digger import parser
 from digger import builds
+from digger.helpers import android as android_helper
 
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -53,4 +54,4 @@ def test_sign(capsys, cli):
   cmd = 'sign --path %s --binary %s --name blank-gradle' % (app_dir, apk)
   parser.run(cmd.split())
   out, err = capsys.readouterr()
-  assert os.path.exists('%s/app/build/outputs/apk/blank-gradle.apk' % app_dir)
+  assert len([i for i in android_helper.find_apks(app_dir) if 'blank-gradle.apk' in i]) > 0
