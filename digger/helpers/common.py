@@ -1,7 +1,6 @@
-import subprocess
 import fnmatch
 import os
-import sys
+import subprocess
 
 
 def run_cmd(cmd, log='log.log', cwd='.', stdout=subprocess.PIPE, bufsize=1, encode='utf-8'):
@@ -37,3 +36,14 @@ def find(root_dir, pattern='*'):
     for filename in fnmatch.filter(filenames, pattern):
       matches.append(os.path.join(root, filename))
   return matches
+
+
+def touch_log(log, cwd='.'):
+  """
+  Touches the log file. Creates if not exists OR updates the modification date if exists.
+  :param log:
+  :return: nothing
+  """
+  logfile = '%s/%s' % (cwd, log)
+  with open(logfile, 'a'):
+    os.utime(logfile, None)

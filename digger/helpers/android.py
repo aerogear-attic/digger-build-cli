@@ -1,8 +1,8 @@
-import os
 import functools
+import os
 
-from digger.helpers import common
 from digger import config
+from digger.helpers import common
 
 
 def jarsign(storepass, keypass, keystore, source, alias, path=None):
@@ -33,7 +33,7 @@ def jarsign(storepass, keypass, keystore, source, alias, path=None):
 
 def zipalign(source, dist, build_tool=None, version='4', path=None):
   """
-  Uses zipliang based on a prpvided build tool version (defaulit is 23.0.2).
+  Uses zipalign based on a provided build tool version (defaulit is 23.0.2).
 
   :param source(str) - source apk file to be zipaligned
   :param dist(str) - zipaligned apk file path to be created
@@ -72,7 +72,7 @@ def get_default_keystore(prefix='AG_'):
   :param prefix(str) - A prefix to be used for environment variables, default is AG_.
 
   Returns:
-    A tuble containing the keystore information: (path, storepass, keypass, alias)
+    A tuple containing the keystore information: (path, storepass, keypass, alias)
   """
   path = os.environ.get('%s_KEYSTORE_PATH' % prefix, config.keystore.path)
   storepass = os.environ.get('%s_KEYSTORE_STOREPASS' % prefix, config.keystore.storepass)

@@ -1,13 +1,8 @@
-import os
-import stat
-import subprocess
 import re
 
-from digger import errors
+from digger import config
 from digger.base.build import BaseBuild
 from digger.helpers import android as android_helper
-from digger.helpers import common
-from digger import config
 
 
 class AntBuild(BaseBuild):

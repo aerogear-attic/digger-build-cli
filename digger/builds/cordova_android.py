@@ -1,5 +1,3 @@
-import os
-
 from digger import config
 from digger.base.build import BaseBuild
 from digger.helpers import android as android_helper
@@ -29,9 +27,8 @@ class CordovaAndroidBuild(BaseBuild):
 
   def validate(self):
     # nothing to validate here.
-    # just create the validate.log file.
-    with open('%s/validate.log' % self.path, 'a'):
-      os.utime('%s/validate.log' % self.path, None)
+    # just touch the log file
+    self.touch_log('validate')
 
   def build(self, mode='debug'):
     # run something like
@@ -43,9 +40,8 @@ class CordovaAndroidBuild(BaseBuild):
 
   def test(self):
     # nothing to test here.
-    # just create the test.log file.
-    with open('%s/test.log' % self.path, 'a'):
-      os.utime('%s/test.log' % self.path, None)
+    # just touch the log file
+    self.touch_log('test')
 
   def get_export_path(self):
     """

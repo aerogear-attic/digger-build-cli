@@ -70,3 +70,11 @@ python setup.py test
 ```sh
 py.test -s
 ```
+
+#### Running an individual test
+
+For example:
+
+```sh
+py.test -s tests/test_build.py
+```
