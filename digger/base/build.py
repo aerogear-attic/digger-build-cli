@@ -74,7 +74,7 @@ class BaseBuild(with_metaclass(abc.ABCMeta, object)):
       zf = zipfile.ZipFile(src, 'r')
     except FileNotFoundError:
       raise errors.InvalidPathError(src)
-    except errors.zipfile.BadZipFile:
+    except zipfile.BadZipFile:
       raise errors.InvalidZipFileError(src)
     [zf.extract(file, dest) for file in zf.namelist()]
     zf.close()
@@ -137,6 +137,9 @@ class BaseBuild(with_metaclass(abc.ABCMeta, object)):
 
   def run_cmd(self, cmd, ctx='log'):
     common.run_cmd(cmd, log='%s.log' % ctx, cwd=self.path)
+
+  def touch_log(self, ctx='log'):
+    common.touch_log(log='%s.log' % ctx, cwd=self.path)
 
   @abc.abstractmethod
   def test(self):

@@ -1,8 +1,5 @@
-import os
-
-from .base.action import BaseAction, Argument
 from digger import builds
-
+from .base.action import BaseAction, Argument
 
 __ALL__ = ['BuildAction', 'ExportAction', 'InspectAction', 'LogAction']
 

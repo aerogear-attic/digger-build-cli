@@ -1,12 +1,11 @@
 import os
-import stat
-import subprocess
 import re
+import stat
 
+from digger import config
 from digger import errors
 from digger.base.build import BaseBuild
 from digger.helpers import android as android_helper
-from digger import config
 
 
 class GradleBuild(BaseBuild):
@@ -93,9 +92,9 @@ class GradleBuild(BaseBuild):
     """
     if os.path.exists('%s/gradlew' % self.path) is False:
       raise errors.InvalidProjectStructure(message='Missing gradlew project root folder')
-    with open('%s/validate.log' % self.path, 'a'):
-      os.utime('%s/validate.log' % self.path, None)
-  
+
+    self.touch_log('validate')
+
   def prepare(self):
     """
     Prepares the android project to the build process.

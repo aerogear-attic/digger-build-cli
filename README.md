@@ -24,6 +24,8 @@ To activate the environment run (might need a new terminal window or reload bash
 source activate digger
 ```
 
+You will also need Node 4.x, NPM, Cordova >=6 and Java 8 on your machine.
+
 
 Some requirements are needed to run it outside of a container:
 
@@ -69,4 +71,12 @@ python setup.py test
 
 ```sh
 py.test -s
+```
+
+#### Running an individual test
+
+For example:
+
+```sh
+py.test -s tests/test_build.py
 ```
