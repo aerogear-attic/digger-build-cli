@@ -1,8 +1,7 @@
 from __future__ import print_function
+
 import os
-import stat
 import zipfile
-import subprocess
 import base64
 import abc
 from six import with_metaclass
@@ -39,7 +38,7 @@ class BaseBuild(with_metaclass(abc.ABCMeta, object)):
     r = request.get(url, headers=headers, stream=True)
     if r.status_code != 200:
       err_msg = 'Could not download resource from url (%s): %s'
-      err_args = data = (r.status_code, url)
+      err_args = (r.status_code, url)
       raise errors.DownloadError(err_msg % err_args)
     with open('/tmp/app.zip', 'wb+') as f:
       chunks = r.iter_content(chunk_size=1024)

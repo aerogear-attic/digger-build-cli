@@ -1,4 +1,3 @@
-from __future__ import print_function
 import os
 
 import pytest
@@ -9,9 +8,9 @@ from digger.helpers import android as android_helper
 
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
-tmp_dir = '%s/tmp' % current_dir
+tmp_dir = '%s/../tmp' % current_dir
 app_dir = '%s/welcome-android-gradle-master' % tmp_dir
-keystore = '%s/odra.keystore' % current_dir
+keystore = '%s../odra.keystore' % current_dir
 
 
 @pytest.fixture
@@ -50,8 +49,9 @@ def test_sign(capsys, cli):
   cmd = 'export --path %s' % app_dir
   parser.run(cmd.split())
   out, err = capsys.readouterr()
-  apk = [f.replace('\n', '') for f in out.split(',') if f.replace('\n', '').endswith('app-debug-unaligned.apk')]
+  apk = [f.replace('\n', '') for f in out.split(',') if f.replace('\n', '').endswith('-debug-unaligned.apk')]
   apk = apk[0]
-  cmd = 'sign --path %s --binary %s --name welcome-gradle' % (app_dir, apk)
+  cmd = 'sign --path %s --binary %s --name blank-gradle' % (app_dir, apk)
   parser.run(cmd.split())
-  assert len([i for i in android_helper.find_apks(app_dir) if 'welcome-gradle.apk' in i]) > 0
+  out, err = capsys.readouterr()
+  assert len([i for i in android_helper.find_apks(app_dir) if 'blank-gradle.apk' in i]) > 0

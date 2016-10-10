@@ -92,7 +92,7 @@ class GradleBuild(BaseBuild):
     Needs to be implemented by the subclass.
     """
     if os.path.exists('%s/gradlew' % self.path) is False:
-      raise errors.InvalidProjectConfig(message='Missing gradlew project root folder')
+      raise errors.InvalidProjectStructure(message='Missing gradlew project root folder')
     with open('%s/validate.log' % self.path, 'a'):
       os.utime('%s/validate.log' % self.path, None)
   

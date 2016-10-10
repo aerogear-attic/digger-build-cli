@@ -57,7 +57,7 @@ def test_inspect(capsys, folder_list):
 
 def test_projects(capsys, folder_list):
   for project in folder_list:
-    project = builds.GradleBuild(path=project)
+    project = builds.from_path(project)
     project.validate()
     project.prepare()
     project.build()

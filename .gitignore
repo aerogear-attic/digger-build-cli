@@ -68,3 +68,6 @@ tests/unit/tmp
 tests/unit/fixtures
 tests/acceptance/tmp
 tests/acceptance/fixtures
+
+# Intellij IDEA files
+.idea
