@@ -1,3 +1,6 @@
+import os
+import shutil
+
 from digger import config
 from digger.base.build import BaseBuild
 from digger.helpers import android as android_helper
@@ -16,9 +19,20 @@ class CordovaAndroidBuild(BaseBuild):
     android_helper.zipalign(apk, dist, build_tool=config.build_tool_version, path=self.path)
 
   def prepare(self):
-    # add android platform as we don't want the build to fail because of missing
-    # android platform in the config.xml file.
-    self.run_cmd(['cordova', 'platform', 'add', 'android'], 'prepare')
+    # no need to create a Cordova project.
+    # skipping `cordova create` call.
+
+    # if Android platform is not there, add it.
+    if os.path.exists('%s/platforms/android' % self.path) is False:
+      self.run_cmd(['cordova', 'platform', 'add', 'android'], 'prepare')
+
+    # if we have a package.json file, do npm run.
+    # however, since things in node_modules are platform dependent,
+    # remove the things in node_modules first.
+    if os.path.exists('%s/package.json' % self.path):
+      if os.path.exists('%s/node_modules' % self.path):
+        shutil.rmtree('%s/node_modules' % self.path)
+      self.run_cmd(['npm', 'install'], 'prepare')
 
     # clean stuff first
     # then prepare

@@ -24,6 +24,8 @@ To activate the environment run (might need a new terminal window or reload bash
 source activate digger
 ```
 
+You will also need Node 4.x, NPM, Cordova >=6 and Java 8 on your machine.
+
 
 Some requirements are needed to run it outside of a container:
 
