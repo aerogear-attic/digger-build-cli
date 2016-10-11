@@ -1,16 +1,28 @@
 language: python
+
 python:
   - "3.5"
 
+sudo: required
+
+env:
+  global:
+    - ANDROID_HOME=/opt/android-sdk-linux
+    - PATH=$PATH:$ANDROID_HOME/tools
+    - JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
 before_install:
-  - "apt-get update -y"
-  - "apt-get install -y expect"
-  - "/tests/scripts/install-android-sdk"
-  - "/tests/scripts/install-android-packages"
-  - "/tests/scripts/install-cordova"
+  - "sudo apt-get install -y oracle-java8-set-default expect unzip lib32stdc++6 lib32z1"
+  - "java -version"
+  - "sudo mkdir /gradle-cache && sudo chmod 777 /gradle-cache"
 
 install:
   - "pip install -r requirements.txt"
+
+before_script:
+  - "./tests/scripts/install-android-sdk"
+  - "./tests/scripts/install-android-packages"
+  - "./tests/scripts/install-cordova"
 
 script:
   - "py.test -s"

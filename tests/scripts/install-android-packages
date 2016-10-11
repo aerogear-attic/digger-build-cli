@@ -1,7 +1,7 @@
-#!/usr/bin/env expect
+#!/usr/bin/expect
 
 set tools "platform-tools,tools"
-set build_tools [exec ./get-android-build-tools]
+set build_tools [exec ./tests/scripts/get-android-build-tools]
 set extras "extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services"
 set targets "android-17,android-18,android-19,android-20,android-21,android-22,android-23,android-24"
 

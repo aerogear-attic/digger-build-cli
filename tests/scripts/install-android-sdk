@@ -5,6 +5,3 @@
   tar -zxvpf android-sdk_r24.3.3-linux.tgz;
   rm android-sdk_r24.3.3-linux.tgz;
 )
-
-export ANDROID_HOME=/opt/android-sdk-linux
-export PATH=$PATH:$ANDROID_HOME/tools
