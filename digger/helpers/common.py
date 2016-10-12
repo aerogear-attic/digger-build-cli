@@ -1,6 +1,7 @@
 import fnmatch
 import os
 import subprocess
+import sys
 
 
 def run_cmd(cmd, log='log.log', cwd='.', stdout=subprocess.PIPE, bufsize=1, encode='utf-8'):
@@ -19,15 +20,20 @@ def run_cmd(cmd, log='log.log', cwd='.', stdout=subprocess.PIPE, bufsize=1, enco
   logfile = '%s/%s' % (cwd, log)
   if os.path.exists(logfile):
     os.remove(logfile)
-  process = subprocess.Popen(cmd, stdout=stdout, bufsize=bufsize, cwd=cwd)
+  #with open(logfile, 'a') as fh:
+  with subprocess.Popen(cmd, stdout=stdout, bufsize=bufsize, cwd=cwd) as proc:
+    with open(logfile, 'ba') as fh:
+      fh.write(proc.stdout.read())
+    #subprocess.Popen(cmd, stdout=stdout, bufsize=bufsize, cwd=cwd)
+    #process.wait()
+  '''
   with open(logfile, 'a') as f:
     for line in iter(process.stdout.readline, b''):
       chunk = line.decode(encode)
       print(chunk)
       f.write(chunk)
   process.stdout.close()
-  process.wait()
-  return process
+  '''
 
 
 def find(root_dir, pattern='*'):

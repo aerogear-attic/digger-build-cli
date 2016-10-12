@@ -34,12 +34,6 @@ class CordovaAndroidBuild(BaseBuild):
         shutil.rmtree('%s/node_modules' % self.path)
       self.run_cmd(['npm', 'install'], 'prepare')
 
-    # clean stuff first
-    # then prepare
-    if os.path.exists('%s/platforms/android'):
-      shutil.rmtree('%s/platforms/android' % self.path)
-    self.run_cmd(['cordova', 'prepare'], 'prepare')
-
   def validate(self):
     # nothing to validate here.
     # just touch the log file
