@@ -36,7 +36,8 @@ class CordovaAndroidBuild(BaseBuild):
 
     # clean stuff first
     # then prepare
-    self.run_cmd(['cordova', 'clean'], 'prepare')
+    if os.path.exists('%s/platforms/android'):
+      shutil.rmtree('%s/platforms/android' % self.path)
     self.run_cmd(['cordova', 'prepare'], 'prepare')
 
   def validate(self):
