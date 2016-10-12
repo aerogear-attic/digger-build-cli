@@ -1,0 +1,18 @@
+#!/usr/bin/expect
+
+set tools "platform-tools,tools"
+set build_tools [exec ./tests/scripts/get-android-build-tools]
+set extras "extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services"
+set targets "android-17,android-18,android-19,android-20,android-21,android-22,android-23,android-24"
+
+set timeout -1
+
+spawn android update sdk --all --no-ui --filter $tools,$build_tools,$extras,$targets
+
+expect {
+  "Do you accept the license '*'*" {
+        exp_send "y\r"
+        exp_continue
+  }
+  eof
+}

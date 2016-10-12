@@ -1,0 +1,7 @@
+#!/bin/bash
+(
+  cd /opt;
+  wget http://dl.google.com/android/android-sdk_r24.3.3-linux.tgz;
+  tar -zxvpf android-sdk_r24.3.3-linux.tgz;
+  rm android-sdk_r24.3.3-linux.tgz;
+)

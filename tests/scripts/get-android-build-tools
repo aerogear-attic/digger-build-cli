@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function join {
+  local IFS="$1";
+  shift; echo "$*";
+}
+
+arr=(`android list sdk -a --extended | grep -oh 'build-tools\-\([0-9]\+\).\([0-9]\+\).\([0-9]\+\)'`)
+pkgs=$(IFS=, ; echo "${arr[*]}")
+
+echo "$pkgs"
