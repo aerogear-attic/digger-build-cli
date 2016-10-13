@@ -4,7 +4,7 @@ import digger
 from digger import errors
 
 
-_parser = argparse.ArgumentParser('build digger tool')
+_parser = argparse.ArgumentParser('AeroGear abcd')
 _subparsers = _parser.add_subparsers()
 _actions = {}
 
