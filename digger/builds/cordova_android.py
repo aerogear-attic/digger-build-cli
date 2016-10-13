@@ -46,7 +46,6 @@ class CordovaAndroidBuild(BaseBuild):
     # cordova build android --release
     self.run_cmd(['cordova', 'build', "android", "--%s" % mode], 'build')
 
-
   def test(self):
     # nothing to test here.
     # just touch the log file

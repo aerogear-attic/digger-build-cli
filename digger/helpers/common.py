@@ -2,9 +2,12 @@ import fnmatch
 import os
 import subprocess
 import sys
+import io
+import os
+from contextlib import redirect_stdout
+import copy
 
-
-def run_cmd(cmd, log='log.log', cwd='.', stdout=subprocess.PIPE, bufsize=1, encode='utf-8'):
+def run_cmd(cmd, log='log.log', cwd='.', stdout=sys.stdout, bufsize=1, encode='utf-8'):
   """
   Runs a command in the backround by creating a new process and writes the output to a specified log file.
 
@@ -18,22 +21,31 @@ def run_cmd(cmd, log='log.log', cwd='.', stdout=subprocess.PIPE, bufsize=1, enco
     The process object
   """
   logfile = '%s/%s' % (cwd, log)
+  
   if os.path.exists(logfile):
     os.remove(logfile)
-  #with open(logfile, 'a') as fh:
-  with subprocess.Popen(cmd, stdout=stdout, bufsize=bufsize, cwd=cwd) as proc:
-    with open(logfile, 'ba') as fh:
-      fh.write(proc.stdout.read())
-    #subprocess.Popen(cmd, stdout=stdout, bufsize=bufsize, cwd=cwd)
-    #process.wait()
-  '''
-  with open(logfile, 'a') as f:
-    for line in iter(process.stdout.readline, b''):
-      chunk = line.decode(encode)
-      print(chunk)
-      f.write(chunk)
-  process.stdout.close()
-  '''
+  proc_args = {
+    'stdout': subprocess.PIPE,
+    'stderr': subprocess.PIPE,
+    'cwd': cwd,
+    'universal_newlines': True
+  }
+
+  proc = subprocess.Popen(cmd, **proc_args)
+  
+  while True:
+    line = proc.stdout.readline()
+    if proc.poll() is None:
+      stdout.write(line)
+    else:
+      break
+  out, err = proc.communicate()
+
+  with open(logfile, 'w') as f:
+    if out:
+      f.write(out)
+    else:
+      f.write(err)
 
 
 def find(root_dir, pattern='*'):
