@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
   name='AeroGear build cli for Digger',
-  version='0.2.0',
+  version='0.2.1',
   description='AeroGear build cli for Digger',
   author='AeroGear',
   packages=find_packages(),
