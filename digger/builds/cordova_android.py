@@ -34,11 +34,6 @@ class CordovaAndroidBuild(BaseBuild):
         shutil.rmtree('%s/node_modules' % self.path)
       self.run_cmd(['npm', 'install'], 'prepare')
 
-    # clean stuff first
-    # then prepare
-    self.run_cmd(['cordova', 'clean'], 'prepare')
-    self.run_cmd(['cordova', 'prepare'], 'prepare')
-
   def validate(self):
     # nothing to validate here.
     # just touch the log file
@@ -50,7 +45,6 @@ class CordovaAndroidBuild(BaseBuild):
     # OR
     # cordova build android --release
     self.run_cmd(['cordova', 'build', "android", "--%s" % mode], 'build')
-
 
   def test(self):
     # nothing to test here.
