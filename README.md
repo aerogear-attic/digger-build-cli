@@ -6,6 +6,8 @@
 
 ## Usage
 
+Full documentation at [http://digger-build-cli.readthedocs.io](http://digger-build-cli.readthedocs.io/en/latest/).
+
 ### Requirements
 
 If running outside a container:
