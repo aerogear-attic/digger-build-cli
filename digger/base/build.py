@@ -135,8 +135,10 @@ class BaseBuild(with_metaclass(abc.ABCMeta, object)):
         out.append(line)
     print(''.join(out))
 
-  def run_cmd(self, cmd, ctx='log'):
-    common.run_cmd(cmd, log='%s.log' % ctx, cwd=self.path)
+  def run_cmd(self, cmd, ctx='log', cwd=None, **kwargs):
+    if cwd is None:
+      cwd = self.path
+    common.run_cmd(cmd, log='%s.log' % ctx, cwd=cwd, **kwargs)
 
   def touch_log(self, ctx='log'):
     common.touch_log(log='%s.log' % ctx, cwd=self.path)

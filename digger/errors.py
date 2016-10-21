@@ -84,3 +84,4 @@ class InvalidProjectStructure(BaseError):
     :param cmd(str): invalid cmd name used by the user.
     """
     BaseError.__init__(self, **kwargs)
+    self.message = 'Invalid project structure'

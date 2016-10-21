@@ -8,27 +8,39 @@ import requests
 @pytest.fixture
 def template_names():
   names = [
-    'welcome-android-gradle',
-    'blank-cordova-app'
+    {
+      'user': 'feedhenry-templates',
+      'name': 'welcome-android-gradle',
+      'branch': 'master'
+    },
+    {
+      'user': 'feedhenry-templates',
+      'name': 'blank-cordova-app',
+      'branch': 'master'
+    },
+    {
+      'user': 'feedhenry',
+      'name': 'appforms-project-client',
+      'branch': 'FH-v3.13.0'
+    }
   ]
   return names
 
 
 @pytest.fixture
 def template_urls(template_names):
-  branch = 'master'
-  url = 'https://github.com/feedhenry-templates/%s/archive/%s.zip'
-  return [url % (tmpl, branch) for tmpl in template_names]
+  url = 'https://github.com/%s/%s/archive/%s.zip'
+  return [url % (tmpl['user'], tmpl['name'], tmpl['branch']) for tmpl in template_names]
 
 
 @pytest.fixture(params=['./tests/fixtures'])
 def download_templates(request, template_urls, template_names):
-  branch = 'master'
   folder = request.param
   if os.path.exists(folder) is False:
     os.makedirs(folder)
   for url in template_urls:
-    fname = template_names[template_urls.index(url)]
+    fname = template_names[template_urls.index(url)]['name']
+    branch = template_names[template_urls.index(url)]['branch']
     print('==> Downloading %s template' % fname)
     r = requests.get(url, stream=True)
     if r.status_code != 200:
