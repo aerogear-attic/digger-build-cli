@@ -3,8 +3,9 @@ import os
 from digger import errors
 
 from .ant import AntBuild
-from .cordova_android import CordovaAndroidBuild
+from .cordova_android import CordovaAndroidBuild, CordovaLightAndroidBuild
 from .gradle import GradleBuild
+
 
 ref = {
   'gradle': {
@@ -22,8 +23,12 @@ ref = {
     # then we can be sure that it is a Cordova project.
     # we also need to check if we want to build an IOS app or Android app for the Cordova.
     # for now, we don't do that and support Android only.
-    'is_valid': lambda path: os.path.exists('%s/config.xml' % path),
+    'is_valid': lambda path: os.path.exists('%s/www/config.xml' % path) or os.path.exists('%s/config.xml' % path),
     'builder': lambda path: CordovaAndroidBuild.from_path(path)
+  },
+  'cordovalight_android': {
+    'is_valid': lambda path: os.path.exists('%s/www/config.json' % path),
+    'builder': lambda path: CordovaLightAndroidBuild.from_path(path)
   }
 }
 

@@ -22,6 +22,8 @@ install:
 before_script:
   - "./tests/scripts/install-android-sdk"
   - "./tests/scripts/install-android-packages"
+  - "nvm install 4"
+  - "nvm use 4"
   - "./tests/scripts/install-cordova"
 
 script:
