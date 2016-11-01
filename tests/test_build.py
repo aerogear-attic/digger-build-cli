@@ -55,12 +55,13 @@ def test_inspect(capsys, folder_list):
 
 
 def test_projects(capsys, folder_list):
-  for project in folder_list:
-    project = builds.from_path(project)
+  for project_path in folder_list:
+    project = builds.from_path(project_path)
     project.validate()
     project.prepare()
     project.build()
     paths = project.get_export_path()
+    print('Validating project on %s' % project.path)
     assert len(paths) > 0
     for path in paths.split(','):
       assert os.path.exists(path)
