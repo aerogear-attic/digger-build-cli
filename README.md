@@ -1,5 +1,7 @@
 # abcd - AeroGear build cli for Digger
 
+**_Deprecated:_** This repository is deprecated and no longer maintained!_
+
 [![Build Status](https://travis-ci.org/aerogear/digger-build-cli.png)](https://travis-ci.org/aerogear/digger-build-cli)
 [![License](https://img.shields.io/:license-Apache2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
